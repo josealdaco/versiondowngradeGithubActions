@@ -1,0 +1,37 @@
+name: Pipeline Deploy
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  setup_uat_deployment_pipeline:
+    if: "github.event.release.prerelease"
+    name: Deploy UAT Pipeline
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: set_repo_name
+        run: |
+          echo "Hello world"
+  setup_prod_pipeline:
+    if: "!github.event.release.prerelease"
+    name: Deploy PROD Pipeline
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: set_repo_name
+        run: |
+          echo "Hello World"
+

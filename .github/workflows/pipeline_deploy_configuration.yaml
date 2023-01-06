@@ -2,7 +2,7 @@ name: Pipeline Deploy
 
 on:
   release:
-    types: [published]
+    types: [unpublished, prereleased, released]
 
 permissions:
   contents: read
